@@ -231,25 +231,27 @@ h1{font-size:19px;font-weight:800;margin:0;letter-spacing:-.02em}
 .sec::before{content:'';width:3px;height:14px;border-radius:2px;background:var(--grad)}
 .sec::after{content:'';flex:1;height:1px;background:var(--line)}
 
-/* Updated settings layout */
+/* Updated settings layout to force 4 and 3 columns */
 .settings{display:flex; flex-direction:column; gap:10px;}
-.settings-row{display:grid; gap:8px;}
-.row-1 { grid-template-columns: 1.3fr 1.3fr 0.7fr; }
-.row-2 { grid-template-columns: 1fr 1fr 1fr; }
+.settings-row{display:grid; gap:6px;}
+.row-1 { grid-template-columns: repeat(4, minmax(0, 1fr)); } /* 4 Items in top row */
+.row-2 { grid-template-columns: repeat(3, minmax(0, 1fr)); } /* 3 Items in bottom row */
 
 .field{display:flex; flex-direction:column; min-width:0;}
 .field input{
-  width:100%;height:48px;font-size:15px;font-family:inherit; font-weight:600;
-  padding:0 12px;border:1.5px solid var(--line);border-radius:var(--r-sm);
-  background:var(--field);color:var(--text);
+  width:100%;height:48px;font-size:13px;font-family:inherit; font-weight:600;
+  padding:0 4px;border:1.5px solid var(--line);border-radius:var(--r-sm);
+  background:var(--field);color:var(--text); 
+  text-align: center; /* Center alignment */
+  text-transform: uppercase; /* Force Uppercase */
   transition:border-color .15s,box-shadow .15s,background .15s;
 }
-.field input::placeholder{color:var(--muted);opacity:.8;font-weight:500;}
+.field input::placeholder{color:var(--muted);opacity:.8;font-weight:500; text-transform: uppercase;}
 .field input:focus{
   outline:none;border-color:var(--brand);background:var(--surface);
   box-shadow:0 0 0 4px var(--brand-soft);
 }
-.field.per input { padding: 0 4px; text-align:center; font-weight:700; font-size:16px;} 
+.field.per input { padding: 0 2px; font-weight:700; font-size:14px;} 
 input[type=number]{-moz-appearance:textfield;appearance:textfield}
 input[type=number]::-webkit-outer-spin-button,
 input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
@@ -277,6 +279,7 @@ input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
   background: var(--surface-2); color: var(--text);
   border: 1.5px solid var(--line); border-radius: var(--r-sm);
   pointer-events: none;
+  text-transform: uppercase;
 }
 
 .per-input {
@@ -292,6 +295,7 @@ input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
   padding: 0 8px;
   border: 1.5px solid var(--line); border-radius: var(--r-sm);
   background: var(--field); color: var(--text); transition: all .15s;
+  text-transform: uppercase;
 }
 
 .per-input:focus, .qty-input:focus {
@@ -387,7 +391,7 @@ input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
 }
 .chip{
   display:inline-flex;align-items:center;padding:4px 9px;border-radius:7px;
-  font-size:11px;font-weight:600; white-space:nowrap;
+  font-size:11px;font-weight:600; white-space:nowrap; text-transform: uppercase;
   background:var(--surface-2);color:var(--text-2);border:1px solid var(--line);
   max-width: 100%; overflow: hidden; text-overflow: ellipsis;
 }
@@ -403,7 +407,7 @@ input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
   padding:8px 4px;text-transform:uppercase;letter-spacing:.05em;
   border-bottom:1px solid var(--line);
 }
-.rt td{padding:8px 4px;font-size:13px;font-weight:600;border-bottom:1px solid var(--line)}
+.rt td{padding:8px 4px;font-size:13px;font-weight:600;border-bottom:1px solid var(--line); text-transform: uppercase;}
 .rt td:first-child,.rt th:first-child{text-align:left;padding-left:14px}
 .rt tbody tr:last-child td{border-bottom:0}
 .rt tr.tt td{
@@ -416,12 +420,10 @@ input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
   background:var(--surface);border:1.5px dashed var(--line-2);border-radius:var(--r-lg);
 }
 .emp-icon{font-size:28px;display:block;margin-bottom:6px;opacity:.6}
-/* responsive adjustments */
+
 @media (max-width:400px){
-  .settings-row.row-1 { grid-template-columns: 1.1fr 1.1fr 0.8fr; }
-  .settings-row.row-2 { grid-template-columns: 1fr 1fr 1fr; }
-  .field input { padding: 0 6px; font-size:13px; height: 44px; }
-  .field.per input { font-size: 14px; padding: 0 2px; }
+  .field input { font-size:11px; padding: 0 2px; height: 44px;}
+  .field.per input { font-size: 12px; padding: 0 0px; }
   
   .sc-head { grid-template-columns: 42px 56px 1fr 32px; gap: 6px; }
   .per-input { font-size: 11px; padding: 0; }
@@ -484,25 +486,28 @@ input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
 <div class="card settings">
   <div class="settings-row row-1">
     <div class="field">
-      <input id="sty" type="text" placeholder="স্টাইল নাম" autocomplete="off">
+      <input id="sty" type="text" placeholder="STYLE" autocomplete="off">
     </div>
     <div class="field">
-      <input id="po" type="text" placeholder="PO নাম্বার" autocomplete="off">
+      <input id="po" type="text" placeholder="PO" autocomplete="off">
+    </div>
+    <div class="field">
+      <input id="ord" type="text" placeholder="OP" autocomplete="off">
     </div>
     <div class="field per">
-      <input id="per" type="number" inputmode="numeric" min="1" value="12" placeholder="পিচ">
+      <input id="per" type="number" inputmode="numeric" min="1" placeholder="PER CTN">
     </div>
   </div>
   
   <div class="settings-row row-2">
     <div class="field">
-      <input id="col" type="text" placeholder="কালার" autocomplete="off">
+      <input id="col" type="text" placeholder="COLOR" autocomplete="off">
     </div>
     <div class="field">
-      <input id="buyer" type="text" placeholder="বায়ার" autocomplete="off">
+      <input id="buyer" type="text" placeholder="BUYER" autocomplete="off">
     </div>
     <div class="field">
-      <input id="country" type="text" placeholder="কান্ট্রি" autocomplete="off">
+      <input id="country" type="text" placeholder="COUNTRY" autocomplete="off">
     </div>
   </div>
 </div>
@@ -535,7 +540,7 @@ function esc(x){
 }
 
 function calc(s){
-  var per = num(s.per) || num($('per').value);
+  var per = num(s.per) || num($('per').value) || 12; // Fallback to 12 if empty
   var arr = String(s.q).split(',').map(function(x){ return num(x); });
   var t = arr.reduce(function(a,b){ return a+b; }, 0);
   
@@ -611,30 +616,63 @@ $('sizes').addEventListener('input',function(e){
   var d=e.target.dataset,s=S[d.k];if(!s)return;
   if(d.f)s[d.f]=e.target.value;
   upd();
+  saveDraft(); // ডেটা পরিবর্তন হলে ড্রাফট সেভ হবে
 });
 
 $('sizes').addEventListener('click',function(e){
   var b=e.target.closest('[data-del]');if(!b)return;
   S.splice(+b.dataset.del,1);render();
+  saveDraft();
 });
 
-$('per').addEventListener('input',upd);
+$('per').addEventListener('input',function(){
+  upd();
+  saveDraft();
+});
 
 $('add').onclick=function(){
   var n=prompt('নতুন সাইজের নাম দিন (যেমন: 3XL, 4XL):');
   if(n && n.trim()){
-    S.push({n:n.trim(),per:'',q:''});
+    S.push({n:n.trim().toUpperCase(),per:'',q:''});
     render();
+    saveDraft();
   }
 };
 
 $('clr').onclick=function(){
   S.forEach(function(s){s.q='';s.per=''});
   render();
+  saveDraft();
 };
 
-/* ---------- storage ---------- */
-var KEY='carton_records_v15',H=[];
+/* ---------- Enter Key Navigation ---------- */
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') {
+    var active = document.activeElement;
+    
+    // যদি অ্যাক্টিভ এলিমেন্ট একটি ইনপুট ফিল্ড হয়
+    if (active && active.tagName === 'INPUT') {
+      e.preventDefault(); // ডিফল্ট সাবমিট বা লাইন ব্রেক বন্ধ করে
+      
+      // সব ফোকাসেবল ইনপুট (readonly বাদে) খুঁজে বের করা
+      var inputs = Array.from(document.querySelectorAll('input:not([readonly]):not([disabled]):not([type="hidden"])'));
+      var index = inputs.indexOf(active);
+      
+      // যদি পরের ইনপুট থাকে, তবে সেখানে ফোকাস মুভ করবে
+      if (index > -1 && index < inputs.length - 1) {
+        inputs[index + 1].focus();
+      } else {
+        // যদি একদম শেষ ইনপুটে থাকে, তবে কিবোর্ড ক্লোজ হয়ে যাবে
+        active.blur();
+      }
+    }
+  }
+});
+
+/* ---------- storage & draft ---------- */
+var KEY='carton_records_v19',H=[];
+var DRAFT_KEY='carton_draft_v3';
+
 function loadH(){try{H=JSON.parse(localStorage.getItem(KEY)||'[]')||[]}catch(e){H=[]}}
 function saveH(){try{localStorage.setItem(KEY,JSON.stringify(H));return true}catch(e){return false}}
 function pad(n){return n<10?'0'+n:''+n}
@@ -642,16 +680,58 @@ function today(){var d=new Date();return d.getFullYear()+'-'+pad(d.getMonth()+1)
 function fmt(d){var p=d.split('-');return p[2]+'/'+p[1]+'/'+p[0]}
 function flash(b,t,o){b.textContent=t;setTimeout(function(){b.textContent=o},1600)}
 
+// ড্রাফট সেভ এবং লোড করার ফাংশন
+function saveDraft() {
+  var draft = {
+    sty: $('sty').value,
+    po: $('po').value,
+    ord: $('ord').value,
+    per: $('per').value,
+    col: $('col').value,
+    buyer: $('buyer').value,
+    country: $('country').value,
+    sizes: S
+  };
+  try { localStorage.setItem(DRAFT_KEY, JSON.stringify(draft)); } catch(e) {}
+}
+
+function loadDraft() {
+  try {
+    var d = JSON.parse(localStorage.getItem(DRAFT_KEY));
+    if (d) {
+      $('sty').value = d.sty || '';
+      $('po').value = d.po || '';
+      $('ord').value = d.ord || '';
+      $('per').value = d.per || ''; // ডিফল্ট ১২ বাদ দেওয়া হলো, প্লেসহোল্ডার দেখানোর জন্য
+      $('col').value = d.col || '';
+      $('buyer').value = d.buyer || '';
+      $('country').value = d.country || '';
+      
+      if (d.sizes && Array.isArray(d.sizes) && d.sizes.length > 0) {
+        S = d.sizes;
+      }
+    }
+  } catch(e) {}
+}
+
+// সেটিংসের ইনপুটগুলোতে টাইপ করলেই অটো সেভ হবে
+['sty','po','ord','per','col','buyer','country'].forEach(function(id){
+  $(id).addEventListener('input', saveDraft);
+});
+
+/* ---------- history rendering ---------- */
 function txt(h){
   var s='Serial #'+h.serial+' | '+fmt(h.date)+' '+h.time+'\n'
    +(h.sty?'Style: '+h.sty+'\n':'')
    +(h.po?'PO: '+h.po+'\n':'')
+   +(h.ord?'OP: '+h.ord+'\n':'')
    +(h.color?'Color: '+h.color+'\n':'')
    +(h.buyer?'Buyer: '+h.buyer+'\n':'')
    +(h.country?'Country: '+h.country+'\n':'');
   h.rows.forEach(function(r){s+=r.n+': Carton '+r.c+', Pack '+r.p+', Left '+r.r+'\n'});
   return s+'Total: Carton '+h.tot.c+', Pack '+h.tot.p+', Left '+h.tot.r;
 }
+
 function cp(t,b){
   function fb(){
     var a=document.createElement('textarea');a.value=t;
@@ -662,30 +742,16 @@ function cp(t,b){
   try{navigator.clipboard.writeText(t).then(function(){flash(b,'Copied ✓','Copy')},fb)}catch(e){fb()}
 }
 
-// --- Upgraded Offline Canvas Image Generator ---
 function generateAndShare(record, btn) {
   var oldText = btn.textContent;
   btn.textContent = '...';
   btn.disabled = true;
 
   try {
-    var width = 560; 
-    var pad = 20;
+    var width = 540; 
+    var pad = 16; 
     var cardW = width - pad * 2;
     
-    var rowH = 44;
-    var headerH = 140; 
-    var tableHeadH = 44;
-    var totalH = headerH + tableHeadH + (record.rows.length * rowH) + 60;
-
-    var canvas = document.createElement('canvas');
-    var dpr = window.devicePixelRatio || 2;
-    canvas.width = width * dpr;
-    canvas.height = totalH * dpr;
-    var ctx = canvas.getContext('2d');
-    ctx.scale(dpr, dpr);
-
-    // Colors from CSS
     var style = getComputedStyle(document.body);
     var cBg = style.getPropertyValue('--bg').trim() || '#f3f5fc';
     var cSurface = style.getPropertyValue('--surface').trim() || '#ffffff';
@@ -699,132 +765,144 @@ function generateAndShare(record, btn) {
     var cGreen = style.getPropertyValue('--green').trim() || '#0ea5a3';
     var cAmber = style.getPropertyValue('--amber').trim() || '#e08b0b';
 
-    // Draw Background
+    var dummyCtx = document.createElement('canvas').getContext('2d');
+    dummyCtx.font = 'bold 12px sans-serif';
+    
+    var serialTxt = '#' + record.serial;
+    var serialW = dummyCtx.measureText(serialTxt).width + 20;
+    
+    var currentX = pad + 15 + serialW + 12;
+    var currentY = pad + 30;
+    var chipH = 28;
+    var chipSpacing = 6;
+    var rowSpacing = 8;
+
+    var chipsToDraw = [];
+    if (record.sty) chipsToDraw.push({label:'Style:', val:record.sty, isColor:false});
+    if (record.po) chipsToDraw.push({label:'PO:', val:record.po, isColor:false});
+    if (record.ord) chipsToDraw.push({label:'OP:', val:record.ord, isColor:false});
+    if (record.buyer) chipsToDraw.push({label:'Buyer:', val:record.buyer, isColor:false});
+    if (record.country) chipsToDraw.push({label:'Country:', val:record.country, isColor:false});
+    if (record.color) chipsToDraw.push({label:record.color, val:'', isColor:true});
+
+    chipsToDraw.forEach(function(c) {
+        var text = c.label + (c.val ? ' ' + c.val : '');
+        c.w = dummyCtx.measureText(text).width + 16 + (c.isColor ? 14 : 0);
+        
+        if (currentX + c.w > width - pad - 15) {
+            currentX = pad + 15; 
+            currentY += chipH + rowSpacing;
+        }
+        c.x = currentX;
+        c.y = currentY;
+        currentX += c.w + chipSpacing;
+    });
+
+    var tableStartY = currentY + chipH + 20; 
+    var rowH = 44;
+    var tableHeadH = 40;
+    var totalH = tableStartY + tableHeadH + (record.rows.length * rowH) + 30;
+
+    var canvas = document.createElement('canvas');
+    var dpr = window.devicePixelRatio || 2;
+    canvas.width = width * dpr;
+    canvas.height = totalH * dpr;
+    var ctx = canvas.getContext('2d');
+    ctx.scale(dpr, dpr);
+
     ctx.fillStyle = cBg;
     ctx.fillRect(0, 0, width, totalH);
 
-    // Draw Card Container
     ctx.fillStyle = cSurface;
     ctx.beginPath();
-    if(ctx.roundRect) ctx.roundRect(pad, pad, cardW, totalH - pad*2, 22);
+    if(ctx.roundRect) ctx.roundRect(pad, pad, cardW, totalH - pad*2, 20);
     else ctx.rect(pad, pad, cardW, totalH - pad*2);
     ctx.fill();
     ctx.strokeStyle = cLine; ctx.lineWidth = 1; ctx.stroke();
 
-    // --- Top Header ---
-    var topY = pad + 28;
+    var topY = pad + 30;
     
-    // Serial Pill
-    ctx.font = 'bold 14px sans-serif';
-    var serialTxt = '#' + record.serial;
-    var sw = ctx.measureText(serialTxt).width + 24;
-    
-    var grad = ctx.createLinearGradient(pad + 20, topY - 16, pad + 20 + sw, topY + 10);
+    ctx.font = 'bold 13px sans-serif';
+    var grad = ctx.createLinearGradient(pad + 15, topY - 14, pad + 15 + serialW, topY + 12);
     grad.addColorStop(0, cBrandSolid);
     grad.addColorStop(1, cBrandSolid2);
     ctx.fillStyle = grad;
     ctx.beginPath();
-    if(ctx.roundRect) ctx.roundRect(pad + 20, topY - 16, sw, 28, 8);
-    else ctx.rect(pad + 20, topY - 16, sw, 28);
+    if(ctx.roundRect) ctx.roundRect(pad + 15, topY - 14, serialW, 26, 7);
+    else ctx.rect(pad + 15, topY - 14, serialW, 26);
     ctx.fill();
 
     ctx.fillStyle = '#ffffff';
     ctx.textAlign = 'center';
-    ctx.fillText(serialTxt, pad + 20 + sw/2, topY + 4);
+    ctx.fillText(serialTxt, pad + 15 + serialW/2, topY + 4);
 
-    // Date
     ctx.font = '13px sans-serif';
     ctx.textAlign = 'left';
     ctx.fillStyle = cMuted;
-    ctx.fillText(fmt(record.date) + ' · ' + record.time, pad + 20 + sw + 12, topY + 2);
+    ctx.fillText(fmt(record.date) + ' · ' + record.time, pad + 15 + serialW + 12, topY + 2);
 
-    // --- Chips ---
-    var chipX = pad + 20;
-    var chipY = topY + 50;
-    var chipH = 30;
-
-    function drawChip(label, val, color, isColor) {
-      ctx.font = 'bold 12px sans-serif';
-      var text = label + (val ? ' ' + val : '');
-      var textW = ctx.measureText(text).width;
-      var chipW = textW + 20 + (isColor ? 16 : 0);
-      
-      if (chipX + chipW > pad + cardW - 20) {
-        chipX = pad + 20;
-        chipY += chipH + 10;
-      }
-      
-      ctx.fillStyle = cSurface2;
-      ctx.beginPath();
-      if (ctx.roundRect) ctx.roundRect(chipX, chipY - 18, chipW, chipH, 8);
-      else ctx.rect(chipX, chipY - 18, chipW, chipH);
-      ctx.fill();
-      ctx.strokeStyle = cLine; ctx.lineWidth = 1; ctx.stroke();
-
-      if (isColor) {
-        ctx.fillStyle = cAmber;
+    chipsToDraw.forEach(function(c) {
+        ctx.fillStyle = cSurface2;
         ctx.beginPath();
-        ctx.arc(chipX + 12, chipY - 3, 4, 0, Math.PI*2);
+        if(ctx.roundRect) ctx.roundRect(c.x, c.y - 14, c.w, chipH, 7);
+        else ctx.rect(c.x, c.y - 14, c.w, chipH);
         ctx.fill();
-      }
+        ctx.strokeStyle = cLine; ctx.lineWidth = 1; ctx.stroke();
 
-      ctx.fillStyle = color || cText;
-      ctx.textAlign = 'left';
-      ctx.fillText(text, chipX + (isColor ? 22 : 10), chipY + 2);
-      
-      chipX += chipW + 10;
-    }
+        if (c.isColor) {
+            ctx.fillStyle = cAmber;
+            ctx.beginPath();
+            ctx.arc(c.x + 10, c.y, 3.5, 0, Math.PI*2);
+            ctx.fill();
+        }
 
-    if (record.sty) drawChip('Style:', record.sty, cText, false);
-    if (record.po) drawChip('PO:', record.po, cText, false);
-    if (record.buyer) drawChip('Buyer:', record.buyer, cText, false);
-    if (record.country) drawChip('Country:', record.country, cText, false);
-    if (record.color) drawChip(record.color, '', cAmber, true);
+        ctx.fillStyle = c.isColor ? cAmber : cText;
+        ctx.textAlign = 'left';
+        ctx.font = 'bold 12px sans-serif';
+        var text = c.label + (c.val ? ' ' + c.val : '');
+        ctx.fillText(text, c.x + (c.isColor ? 18 : 8), c.y + 4);
+    });
 
-    // --- Table Header ---
-    var tY = chipY + 40;
+    var tY = tableStartY;
     ctx.fillStyle = cSurface2;
     ctx.beginPath();
-    if(ctx.roundRect) ctx.roundRect(pad + 10, tY - 20, cardW - 20, 36, 8);
-    else ctx.rect(pad + 10, tY - 20, cardW - 20, 36);
+    if(ctx.roundRect) ctx.roundRect(pad + 10, tY - 18, cardW - 20, 32, 8);
+    else ctx.rect(pad + 10, tY - 18, cardW - 20, 32);
     ctx.fill();
 
     ctx.font = 'bold 11px sans-serif';
     ctx.fillStyle = cMuted;
     
-    var c1 = pad + 30;
-    var c2 = pad + cardW * 0.45;
-    var c3 = pad + cardW * 0.70;
-    var c4 = pad + cardW - 30;
+    var c1 = pad + 22;
+    var c2 = pad + cardW * 0.42;
+    var c3 = pad + cardW * 0.68;
+    var c4 = pad + cardW - 22;
 
-    ctx.textAlign = 'left'; ctx.fillText('Size', c1, tY + 3);
-    ctx.textAlign = 'center'; ctx.fillText('Carton', c2, tY + 3);
-    ctx.fillText('Pack', c3, tY + 3);
-    ctx.textAlign = 'right'; ctx.fillText('Left', c4, tY + 3);
+    ctx.textAlign = 'left'; ctx.fillText('Size', c1, tY + 2);
+    ctx.textAlign = 'center'; ctx.fillText('Carton', c2, tY + 2);
+    ctx.fillText('Pack', c3, tY + 2);
+    ctx.textAlign = 'right'; ctx.fillText('Left', c4, tY + 2);
 
-    // --- Table Rows ---
     record.rows.forEach(function(r) {
-      tY += 44;
-      ctx.font = 'bold 15px sans-serif';
+      tY += rowH;
+      ctx.font = 'bold 14px sans-serif';
       
       ctx.textAlign = 'left'; ctx.fillStyle = cText; ctx.fillText(r.n, c1, tY);
       ctx.textAlign = 'center'; ctx.fillStyle = cGreen; ctx.fillText(r.c, c2, tY);
       ctx.fillStyle = cBrand; ctx.fillText(r.p, c3, tY);
       ctx.textAlign = 'right'; ctx.fillStyle = cAmber; ctx.fillText(r.r, c4, tY);
 
-      ctx.beginPath(); ctx.moveTo(c1, tY + 16); ctx.lineTo(c4, tY + 16);
+      ctx.beginPath(); ctx.moveTo(c1, tY + 14); ctx.lineTo(c4, tY + 14);
       ctx.strokeStyle = cLine; ctx.lineWidth = 1; ctx.stroke();
     });
 
-    // --- Total Row ---
-    tY += 46;
-    ctx.font = 'bold 16px sans-serif';
+    tY += rowH;
+    ctx.font = 'bold 15px sans-serif';
     ctx.textAlign = 'left'; ctx.fillStyle = cText; ctx.fillText('Total', c1, tY);
     ctx.textAlign = 'center'; ctx.fillText(record.tot.c, c2, tY);
     ctx.fillText(record.tot.p, c3, tY);
     ctx.textAlign = 'right'; ctx.fillText(record.tot.r, c4, tY);
 
-    // --- Export ---
     canvas.toBlob(function(blob) {
       if (!blob) { throw new Error('Blob failed'); }
       var file = new File([blob], 'Carton-Record-' + record.serial + '.png', { type: 'image/png' });
@@ -865,6 +943,7 @@ function renderH(){
     var chips='';
     if(h.sty)   chips+='<span class="chip">Style: <b>'+esc(h.sty)+'</b></span>';
     if(h.po)    chips+='<span class="chip">PO: <b>'+esc(h.po)+'</b></span>';
+    if(h.ord)   chips+='<span class="chip">OP: <b>'+esc(h.ord)+'</b></span>';
     if(h.buyer) chips+='<span class="chip">Buyer: <b>'+esc(h.buyer)+'</b></span>';
     if(h.country) chips+='<span class="chip">Country: <b>'+esc(h.country)+'</b></span>';
     if(h.color) chips+='<span class="chip color-chip">● '+esc(h.color)+'</span>';
@@ -916,9 +995,10 @@ $('save').onclick=function(){
   H.forEach(function(h){if(h.date===d&&h.serial>mx)mx=h.serial});
   var rec={
     date:d,time:pad(n.getHours())+':'+pad(n.getMinutes()),serial:mx+1,
-    per:num($('per').value),
+    per:num($('per').value) || 12,
     sty:$('sty').value.trim(),
     po:$('po').value.trim(),
+    ord:$('ord').value.trim(),
     color:$('col').value.trim(),
     buyer:$('buyer').value.trim(),
     country:$('country').value.trim(),
@@ -958,7 +1038,8 @@ $('theme').onclick=function(){
   }
 })();
 
-loadH();renderH();render();
+// Init
+loadH(); renderH(); loadDraft(); render();
 </script>
 </body>
 </html>
